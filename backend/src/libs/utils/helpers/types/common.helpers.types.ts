@@ -1,4 +1,8 @@
 import { Request } from 'express';
+import { Device } from 'src/libs/database/entities/device.entity';
+import { Role } from 'src/libs/database/entities/role.entity';
+import { Team } from 'src/libs/database/entities/team.entity';
+import { UAParser } from 'ua-parser-js';
 
 export interface IPaginatedRes {
   pageNumber: number;
@@ -9,16 +13,14 @@ export interface IPaginatedRes {
 
 export interface IRequest<T = any> extends Request {
   user: T;
-  // admin: AdminUser;
-  // currentOrganization: Organization;
-  // currentRole: Role;
+  currentTeam: Team;
+  currentRole: Role;
   reqId: string;
   reqIp: string;
   aetherKey?: string;
   userAgent: string;
-  // device: UAParser.IResult;
-  // currentDevice: Device;
-  // consumer: CreateConsumerResponse;
+  device: UAParser.IResult;
+  currentDevice: Device;
   consumerId: string;
   headers: Request['headers'] & {
     'x-consumer-id': string;

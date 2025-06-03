@@ -42,7 +42,7 @@ export class Migration1748975913901 implements MigrationInterface {
     // Setup default user
     const defaultUserId = v4();
     await queryRunner.query(
-      `INSERT INTO users (id, username, password) VALUES ($1, $2, $3)`,
+      `INSERT INTO users (id, username, password, current_team_id) VALUES ($1, $2, $3, $4)`,
       [
         defaultUserId,
         this.defaultUsername,
@@ -51,6 +51,7 @@ export class Migration1748975913901 implements MigrationInterface {
             ? readFileSync(process.env.DEFAULT_PASSWORD_FILE).toString()
             : undefined) ?? process.env.DEFAULT_PASSWORD!,
         ),
+        defaultTeamId,
       ],
     );
 
