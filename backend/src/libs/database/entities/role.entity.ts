@@ -22,7 +22,7 @@ export class Role extends BaseDatabaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   slug: string;
 
   @Column({ nullable: true })

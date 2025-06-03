@@ -19,7 +19,7 @@ export class User extends BaseDatabaseEntity {
   lastName: string;
 
   @OneToMany(() => UserTeam, (team) => team.user)
-  orgs: UserTeam[];
+  teams: UserTeam[];
 
   @Column({ nullable: true })
   password: string;

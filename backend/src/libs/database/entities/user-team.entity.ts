@@ -4,7 +4,7 @@ import { User } from './user.entity';
 import { Role } from './role.entity';
 import { Team } from './team.entity';
 
-export enum AdminOrganizationStatus {
+export enum TeamStatus {
   ACTIVE = 'active',
   INACTIVE = 'inactive',
   PENDING = 'pending',
@@ -31,8 +31,8 @@ export class UserTeam extends BaseDatabaseEntity {
   @Column()
   teamId: string;
 
-  @Column({ default: AdminOrganizationStatus.PENDING })
-  status: AdminOrganizationStatus;
+  @Column({ default: TeamStatus.PENDING })
+  status: TeamStatus;
 
   @ManyToOne(() => Team)
   @JoinColumn({ name: 'team_id', referencedColumnName: 'id' })

@@ -4,7 +4,7 @@ export class AuthHelpers {
   /**
    * Hash a plain text password using Argon2
    */
-  async hashPassword(plainPassword: string): Promise<string> {
+  static async hashPassword(plainPassword: string): Promise<string> {
     try {
       const hashedPassword = await argon2.hash(plainPassword, {
         type: argon2.argon2id,
@@ -21,7 +21,7 @@ export class AuthHelpers {
   /**
    * Verify a plain text password against a hashed password
    */
-  async verifyPassword(
+  static async verifyPassword(
     plainPassword: string,
     hashedPassword: string,
   ): Promise<boolean> {
