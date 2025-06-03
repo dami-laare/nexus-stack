@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Response } from 'libs/utils/http/response.util';
 import * as moment from 'moment';
+import { Response } from './libs/utils/http/response.util';
 
 @Injectable()
 export class AppService {
