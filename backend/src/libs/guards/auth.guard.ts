@@ -217,6 +217,7 @@ export class AuthGuard implements CanActivate {
     }
 
     request.user = admin;
+    request.currentDevice = savedDevice;
     request.currentTeam = adminTeam?.team;
     request.currentRole = adminTeam?.role;
 

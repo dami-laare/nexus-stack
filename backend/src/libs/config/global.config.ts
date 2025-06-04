@@ -7,6 +7,7 @@ export const GlobalConfig = () => ({
   },
   server: {
     port: process.env.BACKEND_SERVER_PORT || 6969,
+    env: process.env.NODE_ENV ?? 'development',
   },
   jwt: {
     refresh_token_secret: process.env.REFRESH_JWT_SECRET,

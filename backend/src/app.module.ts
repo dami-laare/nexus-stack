@@ -25,6 +25,7 @@ import { IValidationPipe } from './libs/pipes/validation.pipe';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { RequestInterceptor } from './libs/interceptors/request.interceptor';
 import { RequestMiddleware } from './libs/middleware/request.middleware';
+import { EventEmitterInterceptor } from './libs/interceptors/event-emitter.interceptor';
 
 @Module({
   imports: [
@@ -92,6 +93,10 @@ import { RequestMiddleware } from './libs/middleware/request.middleware';
       useClass: ThrottlerGuard,
     },
     { provide: APP_INTERCEPTOR, useClass: RequestInterceptor },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: EventEmitterInterceptor,
+    },
   ],
 })
 export class AppModule implements NestModule {
