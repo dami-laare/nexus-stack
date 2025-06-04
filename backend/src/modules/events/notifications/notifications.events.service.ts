@@ -4,18 +4,21 @@ import {
   EventServices,
   EventSettings,
   NotificationChannels,
-} from 'src/libs/database/entities/event-settings.entity';
-import { NotificationContext } from 'src/libs/database/entities/notification-context.entity';
-import { BroadcastPayload, KAFKA_TOPICS } from 'src/libs/types/events.types';
-import { EventsHelpers } from 'src/libs/utils/helpers/events.helpers';
-import { Response } from 'src/libs/utils/http/response.util';
+} from '../../../libs/database/entities/event-settings.entity';
+import { NotificationContext } from '../../../libs/database/entities/notification-context.entity';
+import {
+  BroadcastPayload,
+  KAFKA_TOPICS,
+} from '../../../libs/types/events.types';
+import { EventsHelpers } from '../../../libs/utils/helpers/events.helpers';
+import { Response } from '../../../libs/utils/http/response.util';
 import { DataSource, Equal, In, Repository } from 'typeorm';
 import { EmailNotificationsService } from './services/email.notification.service';
 
 @Injectable()
 export class NotificationEventsService {
-  eventsSettingsRepository: Repository<EventSettings>;
-  contextRepository: Repository<NotificationContext>;
+  private readonly eventsSettingsRepository: Repository<EventSettings>;
+  private readonly contextRepository: Repository<NotificationContext>;
 
   constructor(
     @InjectDataSource() private readonly datasource: DataSource,
@@ -38,7 +41,9 @@ export class NotificationEventsService {
     });
 
     if (!eventSettings || !eventSettings?.settings)
-      throw new Error('Abort: Notifications event configuration not found');
+      return Response.error(
+        'Abort: Notifications event configuration not found',
+      );
 
     const { settings } = eventSettings;
 

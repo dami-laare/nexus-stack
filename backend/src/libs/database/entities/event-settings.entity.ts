@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { BaseDatabaseEntity } from './base.entity';
-import { KAFKA_TOPICS } from 'src/libs/types/events.types';
+import { KAFKA_TOPICS } from '../../types/events.types';
 
 export enum EventServices {
   NOTIFICATIONS = 'notifications',
