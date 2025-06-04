@@ -20,4 +20,18 @@ export const GlobalConfig = () => ({
     url: process.env.REDIS_URL || 'redis://default:@localhost:6379',
     ttl: process.env.REDIS_TTL || 15 * 60 * 1000,
   },
+  notifications: {
+    smtp: {
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT) || 587,
+      secure: (process.env.SMTP_SECURE ?? 'false') === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    },
+  },
 });
