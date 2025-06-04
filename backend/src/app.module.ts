@@ -26,6 +26,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { RequestInterceptor } from './libs/interceptors/request.interceptor';
 import { RequestMiddleware } from './libs/middleware/request.middleware';
 import { EventEmitterInterceptor } from './libs/interceptors/event-emitter.interceptor';
+import { EventsModule } from './modules/events/events.module';
 
 @Module({
   imports: [
@@ -76,6 +77,7 @@ import { EventEmitterInterceptor } from './libs/interceptors/event-emitter.inter
     TeamModule,
     RoleModule,
     UsersModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [
